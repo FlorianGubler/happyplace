@@ -1,0 +1,43 @@
+#Box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 850px;
+    height: 425px;
+    border-radius: 5px;
+    margin: -212.5px 0 0 -425px;
+    background-color: rgba(105, 108, 110, 0.8);
+}
+
+#Content{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+}
+
+#download-file{
+	position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    height: 50px;
+    width: 150px;
+    margin: -25px 0 0 -75px;
+    background-color: rgb(27, 27, 99);
+    border-radius: 7px;
+    text-align: center;
+    padding-top: 25px;
+    text-decoration: none;
+    color: white;
+}
+#download-file:active{
+    color: white;
+    background-color: teal;
+}
+h2{
+    text-align: center;
+    padding-top: 100px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
