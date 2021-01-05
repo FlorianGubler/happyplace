@@ -19,7 +19,7 @@ services:
         volumes_from:
             - app
     app:
-        image: php:7.0-fpm
+        image: php:7.4-fpm-alpine
         container_name: app
         volumes:
             - ./sites:/var/www/html
@@ -42,20 +42,20 @@ services:
             - /var/lib/mysql
         command: "true"
 
-    # adminer:
-    #     image: adminer
-    #     container_name: adminer
-    #     restart: always
-    #     ports:
-    #         - 8084:8084
-    #     links:
-    #         - mysql
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
+    adminer:
+        image: adminer
+        container_name: adminer
+        restart: always
         ports:
-            - 8080:80
+            - 8080:8080
         links:
             - mysql
-        environment:
-            PMA_HOST: mysql
+
+    # phpmyadmin:
+    #     image: phpmyadmin/phpmyadmin
+    #     ports:
+    #         - 8080:80
+    #     links:
+    #         - mysql
+    #     environment:
+    #         PMA_HOST: mysql
