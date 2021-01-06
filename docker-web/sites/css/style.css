@@ -41,3 +41,52 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+#searchbar{
+    margin: 25px;
+}
+a{
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 150px;
+    height: 25px;
+    background-color: #19458c;
+    color: white;
+    margin: -12.5px 0 0 -75px;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 7px;
+    font-family: Verdana;
+    font-size: 15px;
+}
+#search_submit{
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: 27%;
+    width: 150px;
+    height: 32px;
+    background-color: #19458c;
+    color: white;
+    margin: -12.5px 0 0 -75px;
+    text-align: center;
+    padding-top: 4px;
+    border-radius: 7px;
+    font-family: Verdana;
+    font-size: 15px;
+}
+.map {
+    margin-top: -10px;
+    height: 875px;
+    width: 100%;
+}
+.result{
+    position: absolute;
+    top: 25px;
+    left: 32.5%;
+    color: red;
+    font-family: Verdana;
+}
