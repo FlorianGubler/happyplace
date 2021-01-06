@@ -15,42 +15,45 @@
         <label for="getlastname">Lastname</label>
         <input placeholder="Lastname" name="lastname" autocomplete="off" type="text" id="getlastname"><br>
         <h3 style="margin-bottom:15px;font-size:20px;font-weight: bold;">Location</h3>
-        <label for="getlatitude">Latitude</label>
-        <input placeholder="Latitude" name="latitude" autocomplete="off" type="text" id="getlatitude"><br>
-        <label for="getlongitude">Longitude</label>
-        <input placeholder="Longitude" name="longitude" autocomplete="off" type="text" id="getlongitude"><br>
+        <label for="getadress">Adress</label>
+        <input placeholder="Adress" name="adress" autocomplete="off" type="text" id="getadress"><br>
+        <label for="getpostcode">Post Code & Location</label>
+        <input placeholder="Post Code & Location" name="postcode" autocomplete="off" type="text" id="getpostcode"><br>
         <input type="color" name="color" id="colorpicker" value="#0000ff">
         <button type="submit" name="submit" class="registerbtn">Register</button>
     </form>
 <?php
     session_start();
 
+    // $servername = "mysql27j09.db.hostpoint.internal";
+    // $username = "dekinotu_user1";
+    // $password = "CBXG2pfrpKkDWsG";
+    // $dbname = "dekinotu_happyplace";
+
     $servername = "mysql";
     $username = "root";
     $password = "secret";
     $dbname = "happyplace";
+
     $errors = array(); 
 
-    // $queryString = http_build_query([
-    //     'access_key' => '9b0d4ce6c220fed4874b61140ec1c163',
-    //     'query' => '1600 Pennsylvania Ave NW',
-    //     'region' => 'Washington',
-    //     'output' => 'json',
-    //     'limit' => 1,
-    // ]);
-    
-    // $ch = curl_init(sprintf('%s?%s', 'https://api.positionstack.com/v1/forward', $queryString));
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    // $json = curl_exec($ch);
-    
-    // curl_close($ch);
-    
-    // $apiResult = json_decode($json, true);
-    
-    // print_r($apiResult);
+    function geocode($address){
 
-    // connect to the database
+        // url encode the address
+        $address = urlencode($address);
+    
+        $url = "http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q={$address}&format=json&limit=1";
+    
+        // get the json response
+        $resp_json = file_get_contents($url);
+    
+        // decode the json
+        $resp = json_decode($resp_json, true);
+    
+        return array($resp[0]['lat'], $resp[0]['lon']);
+    
+    }
+
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) {
@@ -60,14 +63,14 @@
     if (isset($_POST['submit'])) {
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
-        $latitude = $_POST['latitude'];
-        $longitude = $_POST['longitude'];
+        $adress = $_POST['adress'];
+        $postcode = $_POST['postcode'];
         $color = $_POST['color'];
 
         if (empty($firstname)) { array_push($errors, "Firstname missing"); }
         if (empty($lastname)) { array_push($errors, "Lastname missing"); }
-        if (empty($latitude)) { array_push($errors, "Latitude missing"); }
-        if (empty($longitude)) { array_push($errors, "Longitude missing"); }
+        if (empty($adress)) { array_push($errors, "Adress missing"); }
+        if (empty($postcode)) { array_push($errors, "Postcode / Location missing"); }
         if (empty($color)) { array_push($errors, "Color missing"); }
         
         $sql_count = "SELECT COUNT(id) FROM apprentices";
@@ -85,14 +88,14 @@
 
         // Finally, register user if there are no errors in the form
         if (count($errors) == 0) {
-            $sql_set_place = "INSERT INTO places (id, latitude, longitude) VALUES($newid, '$latitude', '$longitude')";
+            $latlng = geocode($adress);
+            $sql_set_place = "INSERT INTO places (id, latitude, longitude) VALUES($newid, '$latitude', '$longitude');";
             $result_set = $conn->query($sql_set_place); 
-            $sql_set_mark = "INSERT INTO markers (id, color) VALUES($newid, '$color')";
+            $sql_set_mark = "INSERT INTO markers (id, color) VALUES($newid, '$color');";
             $result_set = $conn->query($sql_set_mark);
-            $sql_set_appr = "INSERT INTO apprentices (prename, lastname, place_id, markers_id) VALUES('$firstname', '$lastname', $newid, $newid)";
+            $sql_set_appr = "INSERT INTO apprentices (prename, lastname, place_id, markers_id) VALUES('$firstname', '$lastname', $newid, $newid);";
             $result_set = $conn->query($sql_set_appr);
             header('Location:index.php');
-
         }
         else{
             echo "<div id='error-container'>";

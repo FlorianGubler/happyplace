@@ -13,7 +13,7 @@
         <input class="searchbar" placeholder="Lastname" name="personsearch-last" autocomplete="off" type="text" id="lname">
         <button type="submit" name="submit-search" id="search_submit">Search</button>
     </form>
-    <a id="register" href="register.php">Register new Memeber</a>
+    <a id="register" href="register.php">Register new Member</a>
     <div id="map" class="map"></div>
     <script type="text/javascript">
         // window.onload = function () {
@@ -53,12 +53,16 @@
                     zoom: 17
                 }));
             }
-            
             map.addLayer(vectorLayer);
         }
     </script>
     <div id="list"> <h2>Members</h2>
 <?php
+    // $servername = "mysql27j09.db.hostpoint.internal";
+    // $username = "dekinotu_user1";
+    // $password = "CBXG2pfrpKkDWsG";
+    // $dbname = "dekinotu_happyplace";
+
     $servername = "mysql";
     $username = "root";
     $password = "secret";
@@ -83,7 +87,7 @@
         <script type='text/javascript'>
             add_map_point(".$row_place_list[1].", ".$row_place_list[0].", false);
         </script>";
-        echo "<a class='list-content' onclick='add_map_point(".$row_place_list[1].", ".$row_place_list[0].", true);'>".$k." - ".$row['prename']." ".$row['lastname']."</a><br>";
+        echo "<a class='list-content' onclick='add_map_point(".$row_place_list[1].", ".$row_place_list[0].", true);'>".$k." |  ".$row['prename']." ".$row['lastname']."</a><br>";
         $k++;
     }
     echo "</div>";
