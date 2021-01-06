@@ -31,6 +31,25 @@
     $dbname = "happyplace";
     $errors = array(); 
 
+    // $queryString = http_build_query([
+    //     'access_key' => '9b0d4ce6c220fed4874b61140ec1c163',
+    //     'query' => '1600 Pennsylvania Ave NW',
+    //     'region' => 'Washington',
+    //     'output' => 'json',
+    //     'limit' => 1,
+    // ]);
+    
+    // $ch = curl_init(sprintf('%s?%s', 'https://api.positionstack.com/v1/forward', $queryString));
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    // $json = curl_exec($ch);
+    
+    // curl_close($ch);
+    
+    // $apiResult = json_decode($json, true);
+    
+    // print_r($apiResult);
+
     // connect to the database
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -50,24 +69,30 @@
         if (empty($latitude)) { array_push($errors, "Latitude missing"); }
         if (empty($longitude)) { array_push($errors, "Longitude missing"); }
         if (empty($color)) { array_push($errors, "Color missing"); }
+        
+        $sql_count = "SELECT COUNT(id) FROM apprentices";
+        $result_count = $conn->query($sql_count);
+        $count = $result_count->fetch_array(MYSQLI_BOTH);
+        $newid = $count[0]+1;
 
-        $sql_check = "SELECT * FROM apprentices WHERE prename='$firstname';";
+        $sql_check = "SELECT prename, lastname FROM apprentices WHERE prename='$firstname';";
         $result_check = $conn->query($sql_check);
         $check = $result_check->fetch_array(MYSQLI_BOTH);
 
-        if ($check[1] === $firstname) {
-            array_push($errors, "Person '$firstname' does already exists");
+        if ($check[0] === $firstname && $check[1] === $lastname) {
+            array_push($errors, "Person '$firstname $lastname' does already exists");
         }
 
         // Finally, register user if there are no errors in the form
         if (count($errors) == 0) {
-            $sql_set_place = "INSERT INTO places (id, latitude, longitude) VALUES(2, '$latitude', '$longitude')";
+            $sql_set_place = "INSERT INTO places (id, latitude, longitude) VALUES($newid, '$latitude', '$longitude')";
             $result_set = $conn->query($sql_set_place); 
-            $sql_set_mark = "INSERT INTO markers (id, color) VALUES(2, '$color')";
+            $sql_set_mark = "INSERT INTO markers (id, color) VALUES($newid, '$color')";
             $result_set = $conn->query($sql_set_mark);
-            $sql_set_appr = "INSERT INTO apprentices (prename, lastname, place_id, markers_id) VALUES('$firstname', '$lastname', 2, 2)";
+            $sql_set_appr = "INSERT INTO apprentices (prename, lastname, place_id, markers_id) VALUES('$firstname', '$lastname', $newid, $newid)";
             $result_set = $conn->query($sql_set_appr);
-           
+            header('Location:index.php');
+
         }
         else{
             echo "<div id='error-container'>";
