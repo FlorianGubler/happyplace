@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js" data-auto-replace-svg></script>
     <title>OpenLayers example</title>
 </head>
 <body>
     <form action="index.php" method="post" id="searchbar">
         <input class="searchbar" placeholder="Firstname" name="personsearch" autocomplete="off" type="text" id="fname">
         <input class="searchbar" placeholder="Lastname" name="personsearch-last" autocomplete="off" type="text" id="lname">
-        <button type="submit" name="submit-search" id="search_submit">Search</button>
+        <button type="submit" name="submit-search" id="search_submit"><i class="fas fa-search-location"></i> Search</button>
     </form>
-    <a id="register" href="register.php">Register new Member</a>
+   	<a href="report.php" id="bug-report"><i class="fas fa-bug"></i> Report Bug</a>
+    <a id="register" href="register.php"><i class="fas fa-file-signature"></i> Register new Member</a>
     <div id="map" class="map"></div>
     <script type="text/javascript">
         // window.onload = function () {
@@ -27,11 +29,17 @@
                 })
             ],
             view: new ol.View({
-                center: ol.proj.fromLonLat([0, 0]),
-                zoom: 3
+                center: ol.proj.fromLonLat([8, 47]),
+                zoom: 8
             })
         });
-        function add_map_point(lng, lat, center) {
+        function set_center(lng, lat){
+        	map.setView(new ol.View({
+                center: ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857'),
+            	zoom: 17
+            }));
+        }
+        function add_map_point(lng, lat) {
             var vectorLayer = new ol.layer.Vector({
                 source: new ol.source.Vector({
                     features: [new ol.Feature({
@@ -47,17 +55,17 @@
                     })
                 })
             });
-            if(center === true){
-                map.setView(new ol.View({
-                    center: ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857'),
-                    zoom: 17
-                }));
-            }
             map.addLayer(vectorLayer);
         }
     </script>
-    <div id="list"> <h2>Members</h2>
+    <div id="list"> 
+    <h2><i class="fas fa-users"></i> Members</h2>
 <?php
+
+	function get_starred($str) { 
+    	$len = strlen($str);
+        return substr($str, 0, 1).str_repeat('*', $len-1); 
+	} 
     // $servername = "mysql27j09.db.hostpoint.internal";
     // $username = "dekinotu_user1";
     // $password = "CBXG2pfrpKkDWsG";
@@ -87,7 +95,7 @@
         <script type='text/javascript'>
             add_map_point(".$row_place_list[1].", ".$row_place_list[0].", false);
         </script>";
-        echo "<a class='list-content' onclick='add_map_point(".$row_place_list[1].", ".$row_place_list[0].", true);'>".$k." |  ".$row['prename']." ".$row['lastname']."</a><br>";
+        echo "<a class='list-content' onclick='set_center(".$row_place_list[1].", ".$row_place_list[0].");'>".$k." |  ".get_starred($row['prename'])." ".get_starred($row['lastname'], true)."</a><br>";
         $k++;
     }
     echo "</div>";
@@ -117,7 +125,7 @@
             $row_marker = $result_marker->fetch_array(MYSQLI_BOTH);
         } 
         else {
-            echo "<p id='result-id' class='result'>0 results</p>";
+            echo "<p id='result-id' class='result'><i class='fas fa-exclamation-triangle'></i> No results</p>";
         }
         echo "
         <script type='text/javascript'>
