@@ -1,0 +1,8 @@
+ReWriteEngine On
+
+RewriteRule ^home/([^/\.]+)?$ /index.php?light=$1 [L]
+RewriteRule ^register?$ /register.php [L]
+RewriteRule ^report?$ /report.php [L]
+RewriteRule ^register/error/([^/\.]+)/firstname/([^/\.]+)/lastname/([^/\.]+)/id/([^/\.]+)/color/([^/\.]+)?$ /register.php?errorget=$1&fn=$2&ln=$3&newid=$4&color=$5 [L]
+
+# Dosnt work on localhost and nginx only for hostpoint

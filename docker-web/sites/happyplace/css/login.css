@@ -1,0 +1,146 @@
+@media only screen and (max-device-width : 500px) {
+    a{
+        text-decoration: none;
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 101px;
+        width: 120px;
+        height: 30px;
+        background-color: #f1f1f1;
+        color: rgb(182, 182, 182);
+        margin: -12.5px 0 0 -75px;
+        text-align: center;
+        padding-top: 10px;
+        border-radius: 5px;
+        font-family: Verdana;
+        font-size: 15px;
+    }
+    form{
+        position: absolute;
+        left: 50%;
+        width: 70%;
+        margin: 0 0 0 -35%;
+        top: 15%;
+        font-family: Verdana;
+    }
+    form input, form textarea{
+        width: 100%;
+        font-family: Verdana;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+    .submitbtn {
+        background-color: #444444;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 106%;
+        opacity: 0.9;
+    }
+    #getdescription{
+        resize: none;
+    }
+    .error{
+        display: block;
+        width: 250px;
+        height: auto;
+        border: 1px solid rgb(175, 8, 8);
+        border-radius: 2px;
+        background-color: rgba(196, 34, 34, 0.534);
+        color: rgb(97, 33, 33);
+        margin: -6.5px;
+        padding: 10px;
+    }
+    #error-container{
+        position: absolute;
+        width: 260px;
+        right: 10px;
+        top: 10px;
+    }
+}
+@media only screen and (min-device-width : 500px) {
+    a{
+        text-decoration: none;
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 101px;
+        width: 120px;
+        height: 30px;
+        background-color: #f1f1f1;
+        color: rgb(182, 182, 182);
+        margin: -12.5px 0 0 -75px;
+        text-align: center;
+        padding-top: 10px;
+        border-radius: 5px;
+        font-family: Verdana;
+        font-size: 15px;
+    }
+    form{
+        position: absolute;
+        left: 50%;
+        width: 500px;
+        margin: 0 0 0 -250px;
+        top: 15%;
+        font-family: Verdana;
+    }
+    form input, form textarea{
+        width: 100%;
+        font-family: Verdana;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+    .submitbtn {
+        background-color: #444444;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 106%;
+        opacity: 0.9;
+    }
+    #getdescription{
+        resize: none;
+    }
+    .error{
+        display: block;
+        width: 250px;
+        height: auto;
+        border: 1px solid rgb(175, 8, 8);
+        border-radius: 2px;
+        background-color: rgba(196, 34, 34, 0.534);
+        color: rgb(97, 33, 33);
+        margin: -6.5px;
+        padding: 10px;
+    }
+    #error-container{
+        position: absolute;
+        width: 260px;
+        right: 10px;
+        top: 10px;
+    }
+    .login-response{
+        display: block;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-top: 20px;
+        width: 300px;
+        height: 40px;
+        border-radius: 5px;
+        position: absolute;
+        left: calc(50% - 150px);
+        bottom: calc(40% - 20px);
+    }
+}
