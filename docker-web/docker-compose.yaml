@@ -2,14 +2,26 @@ version: "3.9"
 services:
     nginx:
         build: ./nginx/
+        container_name: webserver
         ports:
             - 80:80
         links:
             - php
         volumes_from:
             - app
+    # apache2:
+    #     image: webdevops/apache:latest
+    #     container_name: webserver_apache
+    #     volumes:
+    #         - ./php/www:/var/www/html
+    #     ports:
+    #         - 80:80
+    #         - 443:443
+    #     links:
+    #         - php
     php:
         build: ./php/
+        container_name: php
         expose:
             - 9000
         links:
@@ -17,27 +29,43 @@ services:
         volumes_from:
             - app
     app:
-        image: php:7.0-fpm
+        image: php:7.4-fpm-alpine
+        container_name: app
         volumes:
             - ./sites:/var/www/html
         command: "true"
     mysql:
         image: mysql:latest
+        container_name: mysql
         volumes_from:
             - data
         environment:
             MYSQL_ROOT_PASSWORD: secret
             MYSQL_DATABASE: project
-            MYSQL_USER: user1
-            MYSQL_PASSWORD: Zli123
+            MYSQL_USER: lol
+            MYSQL_PASSWORD: lol
+        ports:
+          - "8083:3306"
     data:
         image: mysql:latest
         volumes:
             - /var/lib/mysql
         command: "true"
-    adminer:
-        image: adminer
+
+    # adminer:
+    #     image: adminer
+    #     container_name: adminer
+    #     restart: always
+    #     ports:
+    #         - 8080:8080
+    #     links:
+    #         - mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
         ports:
-            - 8080:8080
+            - 8080:80
         links:
             - mysql
+        environment:
+            PMA_HOST: mysql

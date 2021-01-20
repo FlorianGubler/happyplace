@@ -1,0 +1,60 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+@media only screen and (orientation: landscape) {
+    h1{
+        margin: 5px;
+    }
+    #userlist{
+        max-width: 40%;
+        max-height: 80%;
+        margin: 5px;
+        width: auto;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    #userlist::-webkit-scrollbar {
+        display: none;
+    }
+    #userlist table{
+        width: 100%;
+    }
+    #userlist td, #userlist tr, #userlist th{
+        margin: 5px;
+        padding: 0;
+    }
+    #userlist td{
+        padding: 10px;
+        background-color: rgb(218, 218, 218);
+    }
+    #userlist th{
+        padding: 10px;
+        background-color: rgb(62, 124, 182);
+    }
+    #adduser-container h2{
+        padding-bottom: 10px;
+    }
+    #adduser-container{
+        display: inline-block;
+        padding: 10px;
+        position: absolute;
+        top: 135px;
+        right: 10px;
+        min-width: 55%;
+        width: auto;
+    }
+    #adduser input{
+        width: 20%;
+        height: 30px;
+        padding: 5px;
+    }
+    #adduser button{
+        width: 20%;
+        height: 45px;
+        padding: 5px;
+    }
+}
+@media only screen and (orientation: portrait) {
+    
+}
