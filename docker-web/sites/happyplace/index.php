@@ -1,4 +1,4 @@
-<?php include "config.php"; ?>
+<?php include "config.php"; include "crud.php"; ?>
 <!doctype html>
 <html lang="en">
 <head>
