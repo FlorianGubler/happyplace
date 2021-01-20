@@ -15,7 +15,10 @@
         }
     }
 
-    
+    $sql_profilepicture = "SELECT profilepicture FROM users where username".$username_login.";";
+    $query_profilepicture = $conn->query($sql_profilepicture);
+    $result_profilepicture = $query_profilepicture->fetch_array(MYSQLI_BOTH);
+    $profilepicture = $result_profilepicture[0];
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -33,7 +36,7 @@
     </div>
     <nav id="menu">
         <a id="menu-close" href=""><i class="fas fa-times"></i></a>
-        <a href="<?php if($login){echo $rootpath.'/config/user/'.urlencode($username);}else{echo $rootpath.'/login';}?>" id="menu-user"><?php if($login){echo "<i class='fas fa-user-circle'></i>  ".$username_login;}else{echo "Login";}?></a>
+        <a href="<?php if($login){echo $rootpath.'/config/user/'.urlencode($username);}else{echo $rootpath.'/login';}?>" id="menu-user"><?php if($login){echo $username_login;}else{echo "Login";}?></a>
         <ul>
             <li><a id="home-anchor" href="<?php echo $rootpath ?>/home">- Home</a></li>
             <li><a id="bms-anchor" href="<?php echo $rootpath ?>/bms">- BMS Notenstand</a></li>

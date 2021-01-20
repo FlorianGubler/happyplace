@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@media only screen and (orientation: landscape) {
+  h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px;
+  }
+  #userprofile{
+    min-width: 500px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #userprofile img{
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    margin: 15px;
+  }
+  #userprofile a{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: rgb(76, 76, 197);
+  }
+  #holder:hover { border: 10px dashed #0c0 !important; }
+  .newuserinput{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .newuserinput input, .newuserinput button {
+    background-color: rgb(172, 172, 172);
+    border: 0;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+  .newuserinput button {
+    background-color: rgb(83, 83, 83);
+  }
+  #newusername{
+    top: 100px;
+    min-width: 100%;
+    width: auto;
+    min-height: 100px;
+    height: auto;
+  }
+  #newpasswordf{
+    top: 300px;
+    min-width: 100%;
+    width: auto;
+    min-height: 300px;
+    height: auto;
+  }
+}
+@media only screen and (orientation: portrait) {
+    
+}
