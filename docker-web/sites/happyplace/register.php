@@ -9,8 +9,8 @@
     <title>Register</title>
 </head>
 <body>
-    <a href="<?php echo $rootpath; ?>/home/light"><i class="fas fa-arrow-left"></i> Go Back</a>
-    <form action="<?php echo $rootpath; ?>/register" method="post" id="register-form">
+    <a href="<?php echo $rootpath; ?>/index.php?light=light"><i class="fas fa-arrow-left"></i> Go Back</a>
+    <form action="<?php echo $rootpath; ?>/register.php" method="post" id="register-form">
         <h3 style="margin-bottom:15px;font-size:20px; font-weight: bold;">Personalities</h3>
         <label for="getfirstname">Firstname</label>
         <input onkeydown="removeinvalidclass(this);" value="<?php echo $_GET['fn'];?>" placeholder="Enter Firstname" name="firstname" autocomplete="off" type="text" id="getfirstname"><br>

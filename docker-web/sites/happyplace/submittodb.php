@@ -29,5 +29,5 @@
     fclose($svgfile);
     $k++;
 	
-    header('Location: '.$rootpath.'/home/light');
+    header('Location: '.$rootpath.'/index.php?light=light');
 ?>

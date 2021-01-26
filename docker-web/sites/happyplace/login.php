@@ -9,7 +9,7 @@
     <title>Root Login</title>
 </head>
 <body>
-    <a href="<?php echo $rootpath; ?>/home/light"><i class="fas fa-arrow-left"></i> Go Back</a>
+    <a href="<?php echo $rootpath; ?>/index.php?light=light"><i class="fas fa-arrow-left"></i> Go Back</a>
     <form action="<?php echo $rootpath; ?>/login.php" method="post" id="report-form">
         <h3 style="margin-bottom:15px;font-size:20px; font-weight: bold;">Username</h3>
         <input placeholder="Username" name="username" autocomplete="off" type="text" id="getusername"><br>

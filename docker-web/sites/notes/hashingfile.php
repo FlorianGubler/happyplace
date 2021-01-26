@@ -1,4 +1,4 @@
 <?php
-    $passwd = "Florian GublerFlorogur1.";
+    $passwd = "1234admin";
     echo hash("sha256", $passwd);
 ?>

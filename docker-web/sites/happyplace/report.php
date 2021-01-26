@@ -9,8 +9,8 @@
     <title>Report</title>
 </head>
 <body>
-    <a href="<?php echo $rootpath; ?>/home/light"><i class="fas fa-arrow-left"></i> Go Back</a>
-    <form action="<?php echo $rootpath; ?>/report" method="post" id="report-form">
+    <a href="<?php echo $rootpath; ?>/index.php?light=light"><i class="fas fa-arrow-left"></i> Go Back</a>
+    <form action="<?php echo $rootpath; ?>/report.php" method="post" id="report-form">
         <h3 style="margin-bottom:15px;font-size:20px; font-weight: bold;">Your Name</h3>
         <input placeholder="Name" name="name" autocomplete="off" type="text" id="getname"><br>
         <h3 style="margin-bottom:15px;font-size:20px;font-weight: bold;">Bug Description</h3>
@@ -38,7 +38,7 @@
         if (count($errors) == 0) {
             $sql_set_bugs = "INSERT INTO bugs (id, user, bugdescription) VALUES($newid, '$name', '$description');";
             $result_set = $conn->query($sql_set_bugs); 
-            header('Location: '.$rootpath.'/home/light');
+            header('Location: '.$rootpath.'/index.php?light=light');
         }
         else{
             echo "<div id='error-container'>";

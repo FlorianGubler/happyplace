@@ -1,4 +1,4 @@
-<?php include "config.php"; include "crud.php"; ?>
+<?php include "config.php"; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,13 +10,13 @@
     <title>Happy Place</title>
 </head>
 <body id="bodyobj" style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo 'white';}else{echo 'grey';}} else {echo 'white';} ?>;">
-    <form action="<?php echo $rootpath; ?>/home/light" method="post" id="searchbar">
+    <form action="<?php echo $rootpath; ?>/index.php?light=light" method="post" id="searchbar">
         <input style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" class="searchbar" placeholder="Firstname" name="personsearch" autocomplete="off" type="text" id="fname">
         <input style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" class="searchbar" placeholder="Lastname" name="personsearch-last" autocomplete="off" type="text" id="lname">
         <button style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" type="submit" name="submit-search" id="search_submit"><i class="fas fa-search-location"></i> Search</button>
     </form>
-   	<a style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" href="<?php echo $rootpath ?>/report" id="bug-report"><i class="fas fa-bug"></i> Report Bug</a>
-    <a style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" id="register" href="<?php echo $rootpath ?>/register"><i class="fas fa-file-signature"></i> Register new Member</a>
+   	<a style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" href="<?php echo $rootpath ?>/report.php" id="bug-report"><i class="fas fa-bug"></i> Report Bug</a>
+    <a style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" id="register" href="<?php echo $rootpath ?>/register.php"><i class="fas fa-file-signature"></i> Register new Member</a>
     <div style="opacity: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '100%';}else{echo '60%';}} else {echo '100%';} ?>;" id="map" class="map"></div>
     <script type="text/javascript">
         var map = new ol.Map({
@@ -34,10 +34,10 @@
         function dark_light(){
         	light = "<?php if(isset($_GET['light'])) {echo $_GET['light'];} else{echo "light";} ?>";
         	if(light === 'light'){
-                window.location.href = '<?php echo $rootpath ?>/home/dark';
+                window.location.href = '<?php echo $rootpath ?>/index.php?light=dark';
             }
             else{
-                window.location.href = '<?php echo $rootpath ?>/home/light';
+                window.location.href = '<?php echo $rootpath ?>/index.php?light=light';
             }
             
         }
@@ -48,6 +48,7 @@
             }));
         }
         function add_map_point(lng, lat, color) {
+            console.log("la: "+lat+", lon: "+lng);
             var vectorLayer = new ol.layer.Vector({
                 source: new ol.source.Vector({
                     features: [new ol.Feature({
@@ -71,12 +72,11 @@
     <button style="background-color: <?php if(isset($_GET['light'])){if($_GET['light'] == "light"){echo '#f1f1f1';}else{echo '#565353';}} else {echo '#f1f1f1';} ?>;" onclick="set_center(0, 0, 1);" id="map_reset"><i class="fas fa-redo"></i> Reset Map</button>
     <h2><i class="fas fa-users"></i> Members</h2>
 <?php
-     include "config.php";
     
     // Check connection
-    if ($conn->connect_error) {
+    /*if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    }
+    }*/
     
 	function get_starred($str) { //For anonym datas on website
     	$len = strlen($str);
@@ -143,7 +143,7 @@
   		<p>&copy; By Florian Gubler - Im Rahmen von Projekt "HappyPlace" im ZLI Basislehrjahr 2020 / 2021</p>
   		<a href="mailto:gubler.florian@gmx.net">E-Mail: gubler.florian@gmx.net</a>
         <a href="tel:+41796731741">Telefon : +41796731741</a>
-        <a id="login" href="<?php echo $rootpath ?>/login">Login</a>
+        <a id="login" href="<?php echo $rootpath ?>/login.php">Login</a>
 	</footer>
 </body>
 </html>
