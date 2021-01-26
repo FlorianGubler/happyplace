@@ -6,6 +6,10 @@
 
     $database = new Database("mysql", "root", "secret", "happyplace_oop");
 
+    if(!$database){
+        error_log ("Could not fetch Database ---------------------- Selflog");
+    }
+
     $tables = array();
     $tables[0] = new Entity($database->connection, 'apprentices');
     $tables[1] = new Entity($database->connection, 'markers');
