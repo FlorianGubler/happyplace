@@ -12,8 +12,14 @@
             $this->marker = $marker;
         }
         
-        public function getName(){
-            return $this->firstname.", ".$this->lastname;
+        public function __get($name)
+        {
+            if (!empty($this->$name)){
+                return $this->$name;
+            }
+            else{
+                return false;
+            } 
         }
     }
 ?>

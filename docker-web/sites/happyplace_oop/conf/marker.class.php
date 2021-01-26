@@ -16,7 +16,6 @@
             $latpoint = $this->latitude;
             $lngpoint = $this->longitude;
             $markcolor = urlencode($this->color);
-            urlencode();
             return "add_map_point($lngpoint, $latpoint, '$markcolor');\n";
         }
     }

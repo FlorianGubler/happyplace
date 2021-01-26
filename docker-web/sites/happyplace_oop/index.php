@@ -1,18 +1,16 @@
 <?php
-    require_once("conf/marker.class.php");
-    require_once("conf/apprentices.class.php");
+    include "config.php";
 
-    $markerobjs = array();
-    $markerobjs[0] = new Marker(1, 47, 8, "#37b358");
-    $markerobjs[1] = new Marker(2, 48, 9, "#4b84b3");
+    if(isset($_POST['func'])){
 
-    $rootpath = "http://localhost/happyplace_oop";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js" data-auto-replace-svg></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +18,18 @@
 </head>
 <body>
     <div id="map" class="map"></div>
+    <div id="list">
+        <?php 
+            foreach($apprenticesobjs as $person){
+                echo "<div class='list-content'><p>";
+                echo $person->lastname.", ".$person->firstname;
+                echo "</p><button id='list-edit'><i class='fas fa-pencil-alt'></i></button><button id='list-delete'><i class='fas fa-times'></i></button></div>";
+            }
+        ?>
+    </div>
+    <form id="register-form" action="<?php echo $rootpath ?>/index.php" method="post">
+        <button type="submit" name="register-btn" id="register-button">Register new</button>
+    </form>
     <script type="text/javascript">
         var map = new ol.Map({
             target: 'map',
@@ -59,8 +69,8 @@
             map.addLayer(vectorLayer);
         }
         <?php
-            foreach($markerobjs as $markers){
-                echo $markers->ShowMarkerOnMap();
+            foreach($apprenticesobjs as $apprentices){
+                echo $apprentices->marker->ShowMarkerOnMap();
             }
         ?>
     </script>

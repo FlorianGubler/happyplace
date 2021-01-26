@@ -1,4 +1,85 @@
 .map {
-    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    margin-top: -20px;
     height: calc(100vh - 20px);
+    width: 70%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+#list::-webkit-scrollbar {
+    display: none;
+}
+#list{
+    width: 27%;
+    max-height: 85%;
+    min-height: 20%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border: none;
+    padding: 2.5px;
+}
+.list-content p{
+    display: block;
+    padding: 12.5px;
+    border-radius: 5px;
+    background-color: rgb(230, 230, 230);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 0;
+    margin: 10px;
+}
+.list-content{
+    position: relative;
+}
+.list-content div{
+    padding: 0;
+}
+.list-content button{
+    display: block;
+    padding: 12.5px;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    width: 51px;
+    height: 100%;
+    font-size: 17.5px;
+    border: none;
+    border-bottom-left-radius: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+#list-delete{
+    background-color: rgba(236, 29, 29, 0.6);
+    position: absolute;
+    right: 7.5px;
+    top: 0;
+}
+#list-edit{
+    background-color: rgba(29, 60, 236, 0.6);
+    position: absolute;
+    border-radius: 0;
+    right: 59px;
+    top: 0;
+}
+#register-form{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 27%;
+    height: 40px;
+}
+#register-form button{
+    border: 1px solid rgb(194, 194, 194);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.212);
+    cursor: pointer;
+}
+#register-form button:hover{
+    background-color: rgb(230, 230, 230);
 }
