@@ -18,5 +18,15 @@
             $markcolor = urlencode($this->color);
             return "add_map_point($lngpoint, $latpoint, '$markcolor');\n";
         }
+
+        public function __get($name)
+        {
+            if (!empty($this->$name)){
+                return $this->$name;
+            }
+            else{
+                return false;
+            } 
+        }
     }
 ?>

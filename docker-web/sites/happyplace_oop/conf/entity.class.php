@@ -97,10 +97,11 @@
         public function delete($id)
         {
             try {
-                $statement = $this->connection->prepare("DELETE * FROM " . $this->table . " WHERE id=?");
+                $statement = $this->connection->prepare("DELETE FROM " . $this->table . " WHERE id=?");
                 $statement->bind_param('d', $id);
                 $result = $statement->execute();
                 $statement->close();
+                //$result = $this->connection->query("DELETE FROM " . $this->table . " WHERE id=$id;");
                 return $result;
             } catch (Exception $e) {
                 throw $e;
@@ -129,7 +130,7 @@
             } else {
                 $sql = "INSERT INTO " . $this->table . " (%s) VALUES ('%s');";
                 // implode keys
-                $columns = implode("`, `", array_keys($this->data));
+                $columns = implode(", ", array_keys($this->data));
                 // implode values
                 $values = implode("', '", $this->data);
                 $sql = sprintf($sql, $columns, $values);
@@ -160,7 +161,7 @@
         }
         /**
          * Set an entity variable.
-         * Is run when writing data to inaccessible
+         * Is run when writing data to ianccessible
          * (protected or private) or non-existing properties.
          *
          * @param $name  Name of the variable to set

@@ -10,9 +10,11 @@
         error_log ("Could not fetch Database ---------------------- Selflog");
     }
 
-    $tables = array();
-    $tables[0] = new Entity($database->connection, 'apprentices');
-    $tables[1] = new Entity($database->connection, 'markers');
+    $table_apprentices = new Entity($database->connection, 'apprentices');
+    $table_markers = new Entity($database->connection, 'markers');
+
+    $result_query = $database->query("SELECT COUNT(marker_id) FROM apprentices;");
+    $count = mysqli_fetch_assoc($result_query)['COUNT(marker_id)'];
 
     $result_query = $database->query("SELECT apprentices.id, apprentices.firstname, apprentices.lastname, apprentices.marker_id, markers.lat, markers.lon, markers.color FROM apprentices INNER JOIN markers ON apprentices.marker_id=markers.id;");
     $apprenticesobjs = array();
